@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+<a href="{{ path('entreprise') }}">Retour</a>
+    <h1>{{ entreprise.raisonsociale }}</h1>
+    {% for salarie in entreprise.salaries | sort((a, b) => a.dateEmbauche <=> b.dateEmbauche)%}
+<p><a href="{{ path('salarie_show', {'id':salarie.id}) }}">{{ salarie.nom ~ ' ' ~ salarie.prenom}}</a>{{', embauché(e) le ' ~ salarie.dateEmbauche | date('d/m/Y') }}</p>    {% endfor %}
+{% endblock %}

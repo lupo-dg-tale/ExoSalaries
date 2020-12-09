@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+ 
+{% block contenu %}
+ 
+ {% if editMode %}
+ <h1>Modification</h1>
+ {% else %}
+ <h1>Ajout</h1>
+ {% endif %}
+ 
+ {{form(form)}}
+ <a href="{{ path('salarie') }}">Retour</a>
+{% endblock %}

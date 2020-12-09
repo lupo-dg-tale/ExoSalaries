@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+	<div class="table-responsive containerIndex">
+	<a href="{{ path('salarie')}}"><button class="btn btn-info btn-index">Salariés</button></a>
+	<a href="{{ path('entreprise')}}"><button class="btn btn-info btn-index">Entreprise</button></a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>SALARIE</th>
+				<th>ADRESSE</th>
+				<th>CP</th>
+				<th>VILLE</th>
+				<th>DATE EMBAUCHE</th>
+				<th>ENTREPRISE</th>
+				<th>MODIFIER</th>
+				<th>SUPPRIMER</th>
+			</tr>
+		<thead>
+        <tbody> 
+            {% for salarie in salaries %} 
+                <tr>
+                    <td><a href="{{ path('salarie_show', {'id':salarie.id}) }}">{{ salarie.nom ~' '~ salarie.prenom }}</a></td>
+				    <td>{{ salarie.adresse }}</td>
+				    <td>{{ salarie.cp }}</td>
+				    <td>{{ salarie.ville }}</td>
+				    <td>{{ salarie.dateEmbauche | date('d/m/Y') }}</td>
+				    <td>{{ salarie.entreprise.raisonSociale }}</td>
+					<td><a href="{{ path('salarie_edit', {'id':salarie.id}) }}"><button class="btn btn-warning">Modifier</button></a></td>
+            		<td><a href="{{ path('salarie_delete', {'id':salarie.id}) }}"><button class="btn btn-danger">Supprimer</button></a></td>
+			    </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+	</div>
+	<br>
+	<a class="btn btn-success" href="{{ path('salarie_add') }}">Ajouter</a>
+{% endblock %}

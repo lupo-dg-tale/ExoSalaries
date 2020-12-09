@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+<a href="{{ path('salarie') }}">Retour</a>
+        <h1>{{ salarie.nom ~ ' ' ~ salarie.prenom }}</h1>
+        <p>{{ ' Né(e) le : ' ~ salarie.dateNaissance | date('d/m/Y')}}</p>
+        <p>{{ ' Lieu de résidence : ' ~ salarie.adresse ~ ' ' ~ salarie.cp  ~ ' ' ~ salarie.ville}}</p>
+        <p>{{ ' Embauché(e) par ' ~ salarie.entreprise.raisonSociale ~ ' le ' ~ salarie.dateEmbauche | date('d/m/Y')}}</p>
+
+<h2>Collègues de {{ salarie.prenom }}</h2>
+{% for collegue in salarie.collegues %}
+<a href="{{ path('salarie_show', {'id':collegue.id}) }}">{{ collegue }}</a><br>
+{% endfor %}
+
+{% endblock %}

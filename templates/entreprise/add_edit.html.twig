@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+ 
+{% set text = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+{% block title %}
+Une entreprise
+{% endblock %}
+
+{% block contenu %}
+ 
+<h1>{{ text }} entreprise <span>{{ entreprise }}</span></h1>
+{{ form(formEntreprise) }}
+
+ <a href="{{ path('entreprise') }}">Retour</a>
+{% endblock %}
